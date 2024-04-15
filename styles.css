@@ -119,18 +119,23 @@ button[type="submit"].loading::after {
     width: 100%;
     height: 100%;
     position: absolute;
-    background: linear-gradient(to right, #ffcc00, #ffdb4d);
     top: 0;
     left: 0;
+    background: linear-gradient(to right, #ffcc00, #ffdb4d);
     animation: progress-animation 10s linear forwards;
 }
 
-.progress-bar-text {
+.progress-bar:before {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+    animation: move 10s linear infinite;
     transform: translate(-50%, -50%);
-    font-weight: bold;
 }
 
 @keyframes progress-animation {
@@ -141,6 +146,19 @@ button[type="submit"].loading::after {
         width: 100%;
     }
 }
+
+@keyframes move {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
 
 .result-container {
     display: none;
