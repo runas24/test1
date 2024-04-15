@@ -20,12 +20,12 @@
         <label for="pensionContributions">Пенсионные отчисления за полгода (в тенге):</label>
         <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
         <button type="submit">Рассчитать</button>
-        <div class="overlay" id="overlay">
-            <div class="loader" id="loader"></div>
-            <div class="loading-message" id="loadingMessage">Заявка на рассмотрении</div>
-        </div>
     </form>
     <div id="maxLoanAmount"></div>
+    <div id="overlay" class="overlay">
+        <div id="loader" class="loader"></div>
+        <div id="loadingText" class="loading-text">Заявка на рассмотрении</div>
+    </div>
 </div>
 
 <script src="script.js"></script>
