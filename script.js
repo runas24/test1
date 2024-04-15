@@ -14,7 +14,7 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var loadingMessage = document.createElement("div");
     loadingMessage.innerHTML = '<div class="loader"></div><p class="loading-text">Ваша заявка на рассмотрении...</p>';
     loadingMessage.classList.add("loading-message");
-    document.getElementById("maxLoanAmount").appendChild(loadingMessage);
+    document.body.appendChild(loadingMessage); // Добавляем сообщение о загрузке к body
 
     var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
     var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
@@ -30,6 +30,8 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
 
         submitButton.disabled = false; // Включаем кнопку после загрузки
 
-        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+        // Выводим результат в отдельном окне
+        var resultWindow = window.open("", "Результат", "width=400,height=200");
+        resultWindow.document.write("<h3 style='text-align:center;'>Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге</h3>");
     }, 20000); // Результат появится через 20 секунд (20000 миллисекунд)
 });
