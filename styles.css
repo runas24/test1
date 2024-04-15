@@ -66,37 +66,36 @@ button[type="submit"]:hover {
     background-color: #ffdb4d;
 }
 
-.overlay {
-    display: none;
+/* Оверлей стили */
+#overlay {
     position: fixed;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-}
-
-.overlay-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
-}
-
-.hidden {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-message {
+    color: #fff;
+    font-style: italic;
+    margin-bottom: 20px;
 }
 
 .progress-container {
-    width: 50%;
-    margin: 20px auto;
+    width: 200px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .progress-bar {
     width: 0%;
-    height: 20px;
+    height: 100%;
     background-color: #ffcc00;
+    transition: width 0.3s;
 }
