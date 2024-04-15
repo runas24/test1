@@ -27,7 +27,6 @@ header img {
     background-color: #f2f2f2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    position: relative; /* Добавим позиционирование для новых элементов */
 }
 
 h2 {
@@ -68,14 +67,20 @@ button[type="submit"]:hover {
 }
 
 /* Добавляем анимацию для класса "loading" */
-#loadingAnimation {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+button[type="submit"].loading::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    animation: spin 1s linear infinite;
 }
 
-#result {
-    font-size: 24px;
+.loading-message {
     margin-top: 20px;
+    font-style: italic;
 }
