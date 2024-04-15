@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Кредитный калькулятор</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header>
-    <img src="logo.png" alt="Логотип">
-    <h2>Кредитный калькулятор</h2>
-</header>
-<div class="container">
-    <form id="loanForm">
-        <label for="desiredAmount">Желаемая сумма кредита (в тенге):</label>
-        <input type="text" id="desiredAmount" required oninput="formatCurrency(this)"><br>
-        <label for="creditBurden">Кредитная нагрузка (в тенге):</label>
-        <input type="text" id="creditBurden" required oninput="formatCurrency(this)"><br>
-        <label for="pensionContributions">Пенсионные отчисления за полгода (в тенге):</label>
-        <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
-        <button id="submitButton" type="submit">Рассчитать</button>
-        <div id="loading" class="loading-message">Заявка на рассмотрении</div>
-    </form>
-    <div id="maxLoanAmount"></div>
-    <div id="approvalMessage" class="loading-message">Ваша заявка предварительно одобрена</div>
-</div>
 
-<script src="script.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кредитный калькулятор</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="Логотип">
+        <h2>Кредитный калькулятор</h2>
+    </header>
+    <div class="container">
+        <form id="loanForm">
+            <label for="desiredAmount">Желаемая сумма кредита (в тенге):</label>
+            <input type="text" id="desiredAmount" required oninput="formatCurrency(this)"><br>
+            <label for="creditBurden">Кредитная нагрузка (в тенге):</label>
+            <input type="text" id="creditBurden" required oninput="formatCurrency(this)"><br>
+            <label for="pensionContributions">Пенсионные отчисления за полгода (в тенге):</label>
+            <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
+            <button type="submit">Рассчитать</button>
+        </form>
+        <div id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-message">Заявка на рассмотрении</div>
+        </div>
+        <div id="result">
+            <div id="maxLoanAmount"></div>
+            <div class="approval-message">Ваша заявка предварительно одобрена</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
