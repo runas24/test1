@@ -85,41 +85,26 @@ button[type="submit"].loading::after {
     font-style: italic;
 }
 
-.overlay {
+/* Стили для оверлея */
+#overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    display: none;
+    display: none; /* Изначально скрываем */
     justify-content: center;
     align-items: center;
 }
 
-.progress-bar-container {
-    position: relative;
-    width: 200px;
-    height: 50px;
+#progressBar {
+    font-size: 40px;
+    color: #ffcc00;
 }
 
-.progress-bar {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px;
-    height: 20px;
-    background-color: #ffcc00;
-    border-radius: 10px;
+#loadingMessage {
+    color: #fff;
+    font-size: 18px;
+    margin-top: 10px;
 }
-
-.progress-text {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 14px;
-}
-
