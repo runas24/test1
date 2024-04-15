@@ -6,29 +6,35 @@ function formatCurrency(input) {
 
 document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
-    
+
     var overlay = document.getElementById("overlay");
-    overlay.style.display = "flex"; // Показываем оверлей
-    
-    var progressBar = document.querySelector(".progress-bar");
-    progressBar.style.width = "100%"; // Показываем прогресс на 100%
-    
-    var loadingMessage = document.querySelector(".loading-message");
-    loadingMessage.textContent = "Заявка на рассмотрении..."; // Обновляем текст надписи
-    
-    // Твой рассчет максимальной суммы кредита
-    
+    overlay.style.display = "flex";
+
+    var submitButton = document.querySelector('button[type="submit"]');
+    submitButton.disabled = true; // Отключаем кнопку во время загрузки
+
+    var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
+    var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
+    var pensionContributions = parseFloat(document.getElementById("pensionContributions").value.replace(/\D/g, ''));
+
+    // Рассчитываем максимальную сумму кредита
+    // Больший процент от пенсионных отчислений увеличивает максимальную сумму кредита
+    var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
+
+    var progress = 0;
+    var intervalId = setInterval(function() {
+        progress += 1;
+        document.getElementById("progress-bar-fill").style.width = progress + "%";
+
+        if (progress >= 100) {
+            clearInterval(intervalId);
+            submitButton.disabled = false; // Включаем кнопку после загрузки
+            overlay.style.display = "none";
+            document.getElementById("overlay-message").innerText = "Ваша заявка предварительно одобрена";
+        }
+    }, 100);
+
     setTimeout(function() {
-        // После завершения рассчета
-        overlay.style.display = "none"; // Скрываем оверлей
-        
-        // Показываем результат
-        var maxLoanAmount = 100000; // Замени это на свой рассчет
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-        
-        // Добавляем надпись о предварительном одобрении заявки
-        var approvalMessage = document.createElement("div");
-        approvalMessage.textContent = "Ваша заявка предварительно одобрена";
-        document.getElementById("maxLoanAmount").appendChild(approvalMessage);
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
