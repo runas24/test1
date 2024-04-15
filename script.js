@@ -10,6 +10,10 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var submitButton = document.querySelector('button[type="submit"]');
     submitButton.disabled = true; // Отключаем кнопку во время загрузки
 
+    // Показываем прогресс
+    document.getElementById("progressBar").style.display = "block";
+    document.querySelector(".progress").style.width = "0%";
+
     var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
     var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
     var pensionContributions = parseFloat(document.getElementById("pensionContributions").value.replace(/\D/g, ''));
@@ -22,33 +26,8 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
         submitButton.disabled = false; // Включаем кнопку после загрузки
 
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+
+        // Скрываем прогресс
+        document.getElementById("progressBar").style.display = "none";
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
-});
-
-document.getElementById("loanForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    var submitButton = document.getElementById('calculateButton');
-    submitButton.disabled = true;
-
-    var progressBar = document.getElementById('progressBar');
-    var progressBarInner = document.createElement('div');
-    progressBarInner.classList.add('progress-bar-inner');
-    progressBar.appendChild(progressBarInner);
-
-    progressBar.classList.add('active');
-
-    // Имитация задержки выполнения
-    var progress = 0;
-    var interval = setInterval(function() {
-        progress += 10;
-        progressBarInner.style.width = progress + '%';
-        if (progress >= 100) {
-            clearInterval(interval);
-            setTimeout(function() {
-                submitButton.disabled = false;
-                progressBar.classList.remove('active');
-                progressBar.removeChild(progressBarInner);
-            }, 500); // Добавлено для завершения анимации
-        }
-    }, 300); // Промежуток времени для обновления прогресса
 });
