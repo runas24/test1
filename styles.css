@@ -66,6 +66,25 @@ button[type="submit"]:hover {
     background-color: #ffdb4d;
 }
 
+/* Добавляем анимацию для класса "loading" */
+button[type="submit"].loading::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    animation: spin 1s linear infinite;
+}
+
+.loading-message {
+    margin-top: 20px;
+    font-style: italic;
+}
+
 #overlay {
     display: none;
     position: fixed;
@@ -75,19 +94,20 @@ button[type="submit"]:hover {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-#progress-bar {
-    width: 0;
-    height: 5px;
-    background-color: #ffcc00;
+#progressBar {
+    width: 50%;
+    height: 20px;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-#overlay-message {
-    color: white;
+#overlayText {
+    color: #fff;
     font-size: 24px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
