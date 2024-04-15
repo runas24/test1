@@ -21,11 +21,17 @@
         <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
         <button type="submit">Рассчитать</button>
     </form>
-    <div id="overlay" class="overlay">
-        <div id="loader" class="loader"></div>
-        <div id="overlayText" class="overlay-text"></div>
-    </div>
     <div id="maxLoanAmount"></div>
+</div>
+
+<div id="overlay" class="overlay">
+  <div class="overlay-content">
+    <div id="loadingMessage" class="loading-message">Заявка на рассмотрении...</div>
+    <div id="approvalMessage" class="loading-message hidden">Ваша заявка предварительно одобрена</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>
