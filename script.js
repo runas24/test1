@@ -7,7 +7,14 @@ function formatCurrency(input) {
 document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    document.querySelector('button[type="submit"]').classList.add("loading");
+    var submitButton = document.querySelector('button[type="submit"]');
+    submitButton.disabled = true; // Отключаем кнопку во время загрузки
+
+    // Добавляем сообщение о загрузке
+    var loadingMessage = document.createElement("div");
+    loadingMessage.innerText = "Ваша заявка на рассмотрении...";
+    loadingMessage.classList.add("loading-message");
+    document.getElementById("maxLoanAmount").appendChild(loadingMessage);
 
     var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
     var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
@@ -18,7 +25,11 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
     setTimeout(function() {
-        document.querySelector('button[type="submit"]').classList.remove("loading");
+        // Удаляем сообщение о загрузке
+        loadingMessage.remove();
+
+        submitButton.disabled = false; // Включаем кнопку после загрузки
+
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
     }, 1000);
 });
