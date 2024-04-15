@@ -8,11 +8,25 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var overlay = document.getElementById("overlay");
-    var loader = document.getElementById("loader");
-    var overlayText = document.getElementById("overlayText");
-
     overlay.style.display = "block";
-    overlayText.innerText = "Заявка на рассмотрении";
+
+    var loadingMessage = document.getElementById("loadingMessage");
+    var approvalMessage = document.getElementById("approvalMessage");
+
+    var progressBar = document.getElementById("progressBar");
+    var width = 1;
+    var id = setInterval(frame, 100); // увеличиваем прогресс каждые 100 мс
+
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+            loadingMessage.classList.add("hidden");
+            approvalMessage.classList.remove("hidden");
+        } else {
+            width++;
+            progressBar.style.width = width + '%';
+        }
+    }
 
     var submitButton = document.querySelector('button[type="submit"]');
     submitButton.disabled = true; // Отключаем кнопку во время загрузки
@@ -27,8 +41,9 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
 
     setTimeout(function() {
         submitButton.disabled = false; // Включаем кнопку после загрузки
-        overlayText.innerText = "Ваша заявка предварительно одобрена";
+
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-        overlay.style.display = "none";
+
+        overlay.style.display = "none"; // Скрываем оверлей после загрузки
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
