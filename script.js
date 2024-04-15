@@ -24,3 +24,22 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
+
+document.getElementById("loanForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var submitButton = document.getElementById('calculateButton');
+    submitButton.disabled = true;
+
+    var progressCircle = document.querySelector('.progress-ring__circle');
+    progressCircle.classList.add('in-progress');
+
+    setTimeout(function() {
+        progressCircle.classList.remove('in-progress');
+        progressCircle.classList.add('complete');
+
+        setTimeout(function() {
+            submitButton.disabled = false;
+            progressCircle.classList.remove('complete');
+        }, 1000); // Длительность анимации зависит от CSS
+    }, 3000); // Продолжительность времени загрузки
+});
