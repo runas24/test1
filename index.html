@@ -22,13 +22,15 @@
         <button type="submit">Рассчитать</button>
     </form>
     <div id="maxLoanAmount"></div>
-    <!-- Оверлей с прогресс баром и надписями -->
-    <div id="overlay">
-        <div class="loading-message">Заявка на рассмотрении...</div>
-        <div class="progress-container">
-            <div class="progress-bar"></div>
-        </div>
+</div>
+
+<div id="overlay" class="overlay">
+  <div class="overlay-content">
+    <div id="progress-bar" class="progress-bar">
+      <div id="progress-bar-fill" class="progress-bar-fill"></div>
     </div>
+    <p id="overlay-message">Заявка на рассмотрении</p>
+  </div>
 </div>
 
 <script src="script.js"></script>
