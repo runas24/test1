@@ -27,7 +27,6 @@ header img {
     background-color: #f2f2f2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    position: relative; /* Добавлено для позиционирования прогресс бара */
 }
 
 h2 {
@@ -67,43 +66,7 @@ button[type="submit"]:hover {
     background-color: #ffdb4d;
 }
 
-/* Прогресс бар */
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: #ddd;
-    border-radius: 5px;
-    margin-top: 10px;
-    display: none; /* Скрыт изначально */
-}
-
-.progress {
-    width: 0%;
-    height: 100%;
-    background-color: #4caf50;
-    transition: width 0.3s ease-in-out;
-}
-
-/* Надпись прогресса */
-.progress-text {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 5px 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    display: none; /* Скрыта изначально */
-}
-
-/* Надпись результата */
-.result-text {
-    margin-top: 20px;
-    font-style: italic;
-}
-
-/* CSS для позиционирования прогресс бара и текста по центру */
+/* Прогресс бар и текст наложения */
 .overlay {
     display: none;
     position: fixed;
