@@ -19,15 +19,11 @@
         <input type="text" id="creditBurden" required oninput="formatCurrency(this)"><br>
         <label for="pensionContributions">Пенсионные отчисления за полгода (в тенге):</label>
         <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
-        <button type="submit">Рассчитать</button>
+        <button id="submitButton" type="submit">Рассчитать</button>
+        <div id="loading" class="loading-message">Заявка на рассмотрении</div>
     </form>
-    <div id="overlay" class="overlay">
-        <div id="progressBar" class="progress-bar">
-            <div class="progress"></div>
-        </div>
-        <div id="statusText" class="status-text"></div>
-    </div>
     <div id="maxLoanAmount"></div>
+    <div id="approvalMessage" class="loading-message">Ваша заявка предварительно одобрена</div>
 </div>
 
 <script src="script.js"></script>
