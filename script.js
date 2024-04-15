@@ -32,9 +32,7 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
     // Прячем прогресс бар и показываем результат
-    setTimeout(function() {
-        hideOverlay();
-        submitButton.disabled = false; // Включаем кнопку после загрузки
-        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-    }, 1000); // После секунды скрываем прогресс бар и показываем результат
+    hideOverlay();
+    submitButton.disabled = false; // Включаем кнопку после загрузки
+    document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
 });
