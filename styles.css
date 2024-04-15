@@ -66,36 +66,27 @@ button[type="submit"]:hover {
     background-color: #ffdb4d;
 }
 
-/* CSS для прогресс бара и оверлеев */
-#overlay, #resultOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
+/* Добавляем анимацию для класса "loading" */
+button[type="submit"].loading::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    animation: spin 1s linear infinite;
 }
 
-#progressBarContainer {
+.loading-message {
     margin-top: 20px;
+    font-style: italic;
 }
 
-#progressBar {
-    width: 100%;
-    height: 10px;
-    background-color: #ccc;
-    border-radius: 5px;
-}
-
-#progressText {
-    margin-top: 10px;
-    color: #fff;
-}
-
-#resultText {
-    color: #fff;
-    font-size: 24px;
-}
+/* CSS для оверлея */
+#overlay {
+    display: none;
+    position: fixed;
+    top:
