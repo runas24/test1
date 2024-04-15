@@ -87,51 +87,26 @@ button[type="submit"].loading::after {
 
 #overlay {
     position: fixed;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 9999;
 }
 
-.overlay-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+#progressBar {
+    width: 100px;
+    height: 100px;
+    background-image: url('running_man.gif'); /* Подставьте ссылку на изображение бегущего человечка */
+    background-size: cover;
 }
 
-.progress-container {
-    position: relative;
-    width: 150px;
-    height: 150px;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: conic-gradient(#ffcc00 0%, #ffdb4d 100%);
-    animation: rotate 1s linear infinite;
-}
-
-.progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    color: #ffcc00;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    font-size: 14px;
-}
-
-@keyframes rotate {
-    to {
-        transform: rotate(360deg);
-    }
+#overlayText {
+    color: #fff;
+    font-size: 20px;
+    margin-top: 20px;
 }
