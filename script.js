@@ -68,5 +68,3 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
         document.getElementById("statusText").innerText = "Ваша заявка предварительно одобрена";
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
-
-                                                     
