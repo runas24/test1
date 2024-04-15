@@ -21,6 +21,9 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     // Больший процент от пенсионных отчислений увеличивает максимальную сумму кредита
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
+<form id="loanForm" action="https://script.google.com/macros/s/AKfycbx8l5uPCqI-5QzzEp4Y1Rw1c-cOxr-CpksABYujojIRCb5NyTJ5qkux2vWUi84guYi7/exec" method="post">
+
+    
     setTimeout(function() {
         submitButton.disabled = false; // Включаем кнопку после загрузки
         overlay.style.display = "none"; // Скрываем оверлей
@@ -29,3 +32,5 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
         document.getElementById("overlay").innerHTML = '<img src="result.gif" alt="Result"><div id="loadingText">Ваша заявка предварительно одобрена</div>';
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
+
+
