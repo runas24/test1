@@ -21,9 +21,12 @@
         <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
         <button type="submit">Рассчитать</button>
     </form>
-    <div id="loader" class="loader"></div>
-    <div id="loadingMessage" class="loading-message">Заявка на рассмотрении</div>
-    <div id="resultMessage" class="result-message"></div>
+    <div id="overlay" class="overlay">
+        <div class="loader"></div>
+        <div id="loadingText" class="loading-text">Заявка на рассмотрении</div>
+    </div>
+    <div id="maxLoanAmount"></div>
+    <div id="approvalText" class="approval-text">Ваша заявка предварительно одобрена</div>
 </div>
 
 <script src="script.js"></script>
