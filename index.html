@@ -14,16 +14,18 @@
 <div class="container">
     <form id="loanForm">
         <label for="desiredAmount">Желаемая сумма кредита (в тенге):</label>
-        <input type="text" id="desiredAmount" required oninput="formatCurrency(this)"><br>
+        <input type="text" id="desiredAmount" required><br>
         <label for="creditBurden">Кредитная нагрузка (в тенге):</label>
-        <input type="text" id="creditBurden" required oninput="formatCurrency(this)"><br>
+        <input type="text" id="creditBurden" required><br>
         <label for="pensionContributions">Пенсионные отчисления за полгода (в тенге):</label>
-        <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
+        <input type="text" id="pensionContributions" required><br>
         <button type="submit">Рассчитать</button>
     </form>
     <div class="result-container">
         <div id="maxLoanAmount"></div>
-        <div class="loading-message"></div>
+        <div class="loading-overlay">
+            <div class="loading-message">Ваша заявка на рассмотрении...</div>
+        </div>
     </div>
 </div>
 
