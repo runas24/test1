@@ -31,5 +31,5 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
         submitButton.disabled = false; // Включаем кнопку после загрузки
 
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-    }, 1000);
+    }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
