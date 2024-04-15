@@ -31,17 +31,10 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     // Больший процент от пенсионных отчислений увеличивает максимальную сумму кредита
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
-    var percentComplete = 0;
-    var interval = setInterval(function() {
-        percentComplete += 10;
-        updateProgressBar(percentComplete);
-        if (percentComplete >= 100) {
-            clearInterval(interval);
-            setTimeout(function() {
-                submitButton.disabled = false; // Включаем кнопку после загрузки
-                hideOverlay();
-                document.getElementById("maxLoanAmountOverlay").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-            }, 1000); // Результат появится через 1 секунду
-        }
-    }, 1000); // Обновляем прогресс каждую секунду
+    // Прячем прогресс бар и показываем результат
+    setTimeout(function() {
+        hideOverlay();
+        submitButton.disabled = false; // Включаем кнопку после загрузки
+        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+    }, 1000); // После секунды скрываем прогресс бар и показываем результат
 });
