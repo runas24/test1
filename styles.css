@@ -65,91 +65,35 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #ffdb4d;
 }
-
-/* Оверлей и результаты */
-.overlay {
-    display: none;
+#overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    display: none;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 }
 
-.overlay-content {
+#overlay-content {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.progress-bar-container {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    border-radius: 50%;
-    background: #f2f2f2;
-    overflow: hidden;
-    margin: 0 auto;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(to right, #ffcc00, #ffdb4d);
-    animation: progress-animation 10s linear forwards;
-}
-
-.progress-bar:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: #000;
-    border-radius: 50%;
-    animation: move 10s linear infinite;
-    transform: translate(-50%, -50%);
-}
-
-@keyframes progress-animation {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 100%;
-    }
-}
-
-@keyframes move {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    50% {
-        transform: translate(-50%, -50%) rotate(180deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-.result-container {
-    display: none;
     text-align: center;
 }
 
-.max-loan-amount {
-    margin-bottom: 20px;
+#progress-bar {
+    width: 100px;
+    height: 100px;
+    background: url('running-man.gif') no-repeat center center;
+    background-size: contain;
+    margin: 0 auto;
 }
 
-.approval-message {
-    font-weight: bold;
+#loading-message {
+    margin-top: 20px;
 }
