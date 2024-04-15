@@ -4,11 +4,21 @@ function formatCurrency(input) {
     input.value = formattedValue;
 }
 
+function showOverlay() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function hideOverlay() {
+    document.getElementById("overlay").style.display = "none";
+}
+
+function updateProgressBar(percent) {
+    document.getElementById("progressBar").style.width = percent + "%";
+}
+
 document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
-
-    var overlay = document.getElementById("overlay");
-    overlay.style.display = "flex";
+    showOverlay();
 
     var submitButton = document.querySelector('button[type="submit"]');
     submitButton.disabled = true; // Отключаем кнопку во время загрузки
@@ -21,20 +31,17 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     // Больший процент от пенсионных отчислений увеличивает максимальную сумму кредита
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
-    var progress = 0;
-    var intervalId = setInterval(function() {
-        progress += 1;
-        document.getElementById("progress-bar-fill").style.width = progress + "%";
-
-        if (progress >= 100) {
-            clearInterval(intervalId);
-            submitButton.disabled = false; // Включаем кнопку после загрузки
-            overlay.style.display = "none";
-            document.getElementById("overlay-message").innerText = "Ваша заявка предварительно одобрена";
+    var percentComplete = 0;
+    var interval = setInterval(function() {
+        percentComplete += 10;
+        updateProgressBar(percentComplete);
+        if (percentComplete >= 100) {
+            clearInterval(interval);
+            setTimeout(function() {
+                submitButton.disabled = false; // Включаем кнопку после загрузки
+                hideOverlay();
+                document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+            }, 1000); // Результат появится через 1 секунду
         }
-    }, 100);
-
-    setTimeout(function() {
-        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-    }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
+    }, 1000); // Обновляем прогресс каждую секунду
 });
