@@ -68,12 +68,16 @@ button[type="submit"]:hover {
 
 /* Прогресс бар */
 .progress-bar {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: calc(100% - 42px);
     height: 10px;
     background-color: #ddd;
     border-radius: 5px;
-    margin-top: 10px;
     display: none; /* Скрыт изначально */
+    z-index: 9999;
 }
 
 .progress {
@@ -81,4 +85,20 @@ button[type="submit"]:hover {
     height: 100%;
     background-color: #4caf50;
     transition: width 0.3s ease-in-out;
+}
+
+.progress-text {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+.result-text {
+    font-style: italic;
 }
