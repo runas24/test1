@@ -98,3 +98,21 @@ button[type="submit"].loading::after {
     margin-top: 20px;
     font-style: italic;
 }
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  display: none; /* Начинаем с прогресс-бара скрытым */
+}
+
+.progress-ring__circle.in-progress {
+  stroke-dasharray: 126; /* Длина окружности */
+  stroke-dashoffset: 126; /* Полная длина - 0%, начинаем с полной окружности */
+  display: block; /* Показываем прогресс-бар во время выполнения */
+}
+
+.progress-ring__circle.complete {
+  stroke-dashoffset: 0; /* 100% - окружность полностью нарисована */
+  display: none; /* Прячем прогресс-бар после завершения */
+}
