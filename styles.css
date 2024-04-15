@@ -66,37 +66,40 @@ button[type="submit"]:hover {
     background-color: #ffdb4d;
 }
 
-#overlay {
+/* Оверлей */
+.overlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
-.overlay-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+/* Прогресс-бар */
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #ffcc00;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -60px;
 }
 
-#progressBar {
-    width: 200px;
-    height: 20px;
-    background-color: #ccc;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-#processingMessage {
-    font-style: italic;
-    margin-top: 10px;
-    color: #333;
+/* Текст на оверлее */
+.overlay-text {
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
