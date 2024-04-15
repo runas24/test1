@@ -10,24 +10,22 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var submitButton = document.querySelector('button[type="submit"]');
     submitButton.disabled = true; // Отключаем кнопку во время загрузки
 
-    // Показываем прогресс бар и сообщение о загрузке
-    document.getElementById("loadingOverlay").style.display = "block";
+    var loader = document.getElementById("loader");
+    var loadingMessage = document.getElementById("loadingMessage");
+    var resultMessage = document.getElementById("resultMessage");
 
-    var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
-    var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
-    var pensionContributions = parseFloat(document.getElementById("pensionContributions").value.replace(/\D/g, ''));
+    loader.style.display = "block"; // Показываем прогресс бар
+    loadingMessage.style.display = "block"; // Показываем сообщение "Заявка на рассмотрении"
 
-    // Рассчитываем максимальную сумму кредита
-    // Больший процент от пенсионных отчислений увеличивает максимальную сумму кредита
-    var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
-
+    // Имитация задержки выполнения расчета
     setTimeout(function() {
-        // Скрываем прогресс бар и сообщение о загрузке
-        document.getElementById("loadingOverlay").style.display = "none";
-
         submitButton.disabled = false; // Включаем кнопку после загрузки
-        document.getElementById("result").style.display = "block"; // Показываем результат
 
-        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+        loader.style.display = "none"; // Скрываем прогресс бар
+        loadingMessage.style.display = "none"; // Скрываем сообщение "Заявка на рассмотрении"
+
+        // Показываем сообщение с результатом и статусом заявки
+        resultMessage.innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге. Ваша заявка предварительно одобрена.";
+        resultMessage.style.display = "block"; // Показываем сообщение "Ваша заявка предварительно одобрена"
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
