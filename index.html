@@ -7,27 +7,25 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-    <img src="logo.png" alt="Логотип">
-    <h2>Кредитный калькулятор</h2>
-</header>
-<div class="container">
-    <form id="loanForm">
-        <label for="desiredAmount">Желаемая сумма кредита (в тенге):</label>
-        <input type="text" id="desiredAmount" required oninput="formatCurrency(this)"><br>
-        <label for="creditBurden">Кредитная нагрузка (в тенге):</label>
-        <input type="text" id="creditBurden" required oninput="formatCurrency(this)"><br>
-        <label for="pensionContributions">Пенсионные отчисления за полгода (в тенге):</label>
-        <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
-        <button type="submit">Рассчитать</button>
-    </form>
-    <div id="overlay" class="overlay">
-        <div class="loader"></div>
-        <div id="loadingMessage" class="loading-message">Заявка на рассмотрении</div>
+    <header>
+        <img src="logo.png" alt="Логотип">
+        <h2>Кредитный калькулятор</h2>
+    </header>
+    <div class="container">
+        <form id="loanForm">
+            <!-- Ваши input поля -->
+            <button type="submit">Рассчитать</button>
+            <!-- Добавляем прогресс бар -->
+            <div id="progressBarContainer">
+                <div id="progressBar"></div>
+                <div id="progressText">Заявка на рассмотрении</div>
+            </div>
+        </form>
+        <div id="maxLoanAmount"></div>
     </div>
-    <div id="resultMessage" class="result-message"></div>
-</div>
-
-<script src="script.js"></script>
+    <div id="overlay"></div> <!-- Добавляем оверлей -->
+    <div id="resultOverlay"> <!-- Добавляем оверлей для результата -->
+        <div id="resultText">Ваша заявка предварительно одобрена</div>
+    </div>
+    <script src="script.js"></script>
 </body>
-</html>
