@@ -7,11 +7,11 @@ function formatCurrency(input) {
 document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    var submitButton = document.getElementById('submitButton');
+    var submitButton = document.querySelector('button[type="submit"]');
     submitButton.disabled = true; // Отключаем кнопку во время загрузки
 
-    var loadingMessage = document.getElementById('loading');
-    loadingMessage.style.display = 'block'; // Показываем сообщение о загрузке
+    // Показываем прогресс бар и сообщение о загрузке
+    document.getElementById("loadingOverlay").style.display = "block";
 
     var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
     var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
@@ -22,11 +22,11 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
     setTimeout(function() {
-        submitButton.disabled = false; // Включаем кнопку после загрузки
-        loadingMessage.style.display = 'none'; // Скрываем сообщение о загрузке
+        // Скрываем прогресс бар и сообщение о загрузке
+        document.getElementById("loadingOverlay").style.display = "none";
 
-        var approvalMessage = document.getElementById('approvalMessage');
-        approvalMessage.style.display = 'block'; // Показываем сообщение о предварительном одобрении
+        submitButton.disabled = false; // Включаем кнопку после загрузки
+        document.getElementById("result").style.display = "block"; // Показываем результат
 
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
