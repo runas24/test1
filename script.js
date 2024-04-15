@@ -12,7 +12,7 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
 
     // Добавляем сообщение о загрузке
     var loadingMessage = document.createElement("div");
-    loadingMessage.innerText = "Ваша заявка на рассмотрении...";
+    loadingMessage.innerHTML = '<div class="loader"></div><p class="loading-text">Ваша заявка на рассмотрении...</p>';
     loadingMessage.classList.add("loading-message");
     document.getElementById("maxLoanAmount").appendChild(loadingMessage);
 
@@ -31,5 +31,5 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
         submitButton.disabled = false; // Включаем кнопку после загрузки
 
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-    }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
+    }, 20000); // Результат появится через 20 секунд (20000 миллисекунд)
 });
