@@ -66,31 +66,28 @@ button[type="submit"]:hover {
     background-color: #ffdb4d;
 }
 
-/* Оверлей */
+/* Добавляем стили для оверлея */
 #overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
     justify-content: center;
     align-items: center;
-    z-index: 999;
-}
-
-.overlay-content {
+    flex-direction: column;
     text-align: center;
 }
 
-.overlay-content img {
-    width: 100px; /* Подбирайте размеры для вашего GIF */
+#overlay img {
+    width: 100px; /* Размер анимированного GIF */
     height: auto;
 }
 
-#overlayMessage {
-    color: #fff;
-    font-size: 18px;
+#loadingText {
     margin-top: 10px;
 }
+
