@@ -8,10 +8,7 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var overlay = document.getElementById("overlay");
-    var overlayMessage = document.getElementById("overlayMessage");
-
-    overlay.style.display = "flex";
-    overlayMessage.innerText = "Заявка на рассмотрении";
+    overlay.style.display = "flex"; // Показываем оверлей
 
     var submitButton = document.querySelector('button[type="submit"]');
     submitButton.disabled = true; // Отключаем кнопку во время загрузки
@@ -26,13 +23,9 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
 
     setTimeout(function() {
         submitButton.disabled = false; // Включаем кнопку после загрузки
+        overlay.style.display = "none"; // Скрываем оверлей
 
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-        
-        overlayMessage.innerText = "Ваша заявка предварительно одобрена";
-
-        setTimeout(function() {
-            overlay.style.display = "none"; // Скрыть оверлей после показа результата
-        }, 3000); // Показываем результат в течение 3 секунд
+        document.getElementById("overlay").innerHTML = '<img src="result.gif" alt="Result"><div id="loadingText">Ваша заявка предварительно одобрена</div>';
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
