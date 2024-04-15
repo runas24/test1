@@ -7,18 +7,13 @@ function formatCurrency(input) {
 document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    var overlay = document.getElementById("overlay");
-    overlay.style.display = "flex";
-
-    var loadingMessage = document.getElementById("loadingMessage");
-    loadingMessage.style.display = "block";
-
-    var resultMessage = document.getElementById("resultMessage");
-    resultMessage.style.display = "none";
+    // Отображаем оверлей с прогресс баром и текстом
+    document.getElementById("overlay").style.display = "flex";
 
     var submitButton = document.querySelector('button[type="submit"]');
-    submitButton.disabled = true; // Отключаем кнопку во время загрузки
+    submitButton.disabled = true;
 
+    // Ваша логика расчета
     var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
     var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
     var pensionContributions = parseFloat(document.getElementById("pensionContributions").value.replace(/\D/g, ''));
@@ -28,11 +23,9 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
     setTimeout(function() {
-        submitButton.disabled = false; // Включаем кнопку после загрузки
-
-        overlay.style.display = "none";
-        loadingMessage.style.display = "none";
-        resultMessage.style.display = "block";
-        resultMessage.innerText = "Ваша заявка предварительно одобрена. Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-    }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
+        submitButton.disabled = false;
+        document.getElementById("overlay").style.display = "none"; // Скрываем прогресс бар
+        document.getElementById("resultOverlay").style.display = "flex"; // Показываем оверлей с результатом
+        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+    }, 10000);
 });
