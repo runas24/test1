@@ -10,9 +10,9 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var overlay = document.getElementById("overlay");
     var loader = document.getElementById("loader");
     var overlayText = document.getElementById("overlayText");
+    var approvalMessage = document.getElementById("approvalMessage");
 
     overlay.style.display = "flex";
-
     overlayText.innerText = "Заявка на рассмотрении";
 
     var submitButton = document.querySelector('button[type="submit"]');
@@ -27,9 +27,11 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
 
         var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
-        overlay.style.display = "none";
-        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-        
-        overlayText.innerText = "Ваша заявка предварительно одобрена";
+        overlayText.innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+
+        setTimeout(function() {
+            overlay.style.display = "none";
+            approvalMessage.style.display = "block";
+        }, 2000); // Показываем результат в оверлее на 2 секунды, затем показываем надпись о одобрении
     }, 10000);
 });
