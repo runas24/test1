@@ -63,24 +63,4 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #ffdb4d;
-}
-
-/* Добавляем анимацию для класса "loading" */
-button[type="submit"].loading::after {
-    content: "";
-    width: 20px;
-    height: 20px;
-    border: 2px solid #fff;
-    border-top: 2px solid #000;
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    top: 4px;
-    animation: spin 1s linear infinite;
-}
-
-.loading-message {
-    margin-top: 20px;
-    font-style: italic;
-}
+    background-color: #ff
