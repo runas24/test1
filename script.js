@@ -7,11 +7,11 @@ function formatCurrency(input) {
 document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    var overlay = document.getElementById("overlay");
-    overlay.style.display = "flex"; // Показываем оверлей при отправке формы
-
     var submitButton = document.querySelector('button[type="submit"]');
     submitButton.disabled = true; // Отключаем кнопку во время загрузки
+
+    // Показываем оверлей с прогресс-баром и текстом
+    document.getElementById("overlay").style.display = "flex";
 
     var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
     var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
@@ -22,10 +22,12 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
     setTimeout(function() {
-        overlay.style.display = "none"; // Скрываем оверлей после загрузки
         submitButton.disabled = false; // Включаем кнопку после загрузки
 
+        // Скрываем оверлей
+        document.getElementById("overlay").style.display = "none";
+
+        // Выводим результат
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-        document.getElementById("loadingText").innerText = "Ваша заявка предварительно одобрена";
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
