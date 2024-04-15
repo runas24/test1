@@ -10,11 +10,8 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var submitButton = document.querySelector('button[type="submit"]');
     submitButton.classList.add("loading"); // Добавляем класс "loading" при отправке формы
 
-    // Добавляем сообщение о загрузке
-    var loadingMessage = document.createElement("div");
-    loadingMessage.innerText = "Ваша заявка на рассмотрении...";
-    loadingMessage.classList.add("loading-message");
-    document.getElementById("maxLoanAmount").appendChild(loadingMessage);
+    var maxLoanAmount = document.getElementById("maxLoanAmount");
+    maxLoanAmount.innerText = "Ваша заявка на рассмотрении..."; // Показываем сообщение о загрузке
 
     var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
     var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
@@ -22,14 +19,11 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
 
     // Рассчитываем максимальную сумму кредита
     // Больший процент от пенсионных отчислений увеличивает максимальную сумму кредита
-    var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
+    var maxLoanAmountValue = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
     setTimeout(function() {
-        // Удаляем сообщение о загрузке
-        loadingMessage.remove();
-
         submitButton.classList.remove("loading"); // Удаляем класс "loading" после загрузки
-
-        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+        maxLoanAmount.innerText = "Максимальная сумма кредита: " + maxLoanAmountValue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
     }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
+
