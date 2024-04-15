@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Кредитный калькулятор</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Подключаем Font Awesome -->
 </head>
 <body>
 <header>
@@ -21,22 +22,14 @@
         <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
         <button type="submit">Рассчитать</button>
     </form>
-    <div id="maxLoanAmount"></div>
-</div>
-
-<div id="overlay" class="overlay">
-    <div class="progress-bar-container">
-        <div class="progress-bar"></div>
-        <div class="progress-text">Заявка на рассмотрении</div>
+    <div id="overlay">
+        <div id="progressBar">
+            <i class="fas fa-running"></i> <!-- Иконка "бегущего человечка" -->
+        </div>
+        <div id="loadingMessage">Заявка на рассмотрении...</div>
     </div>
+    <div id="result"></div>
 </div>
-
-
-    <div id="maxLoanAmount"></div>
-<div id="resultMessage"></div>
-
-
-
 
 <script src="script.js"></script>
 </body>
