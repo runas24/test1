@@ -40,7 +40,7 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
             setTimeout(function() {
                 submitButton.disabled = false; // Включаем кнопку после загрузки
                 hideOverlay();
-                document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+                document.getElementById("maxLoanAmountOverlay").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
             }, 1000); // Результат появится через 1 секунду
         }
     }, 1000); // Обновляем прогресс каждую секунду
