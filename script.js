@@ -30,16 +30,25 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     var submitButton = document.getElementById('calculateButton');
     submitButton.disabled = true;
 
-    var progressCircle = document.querySelector('.progress-ring__circle');
-    progressCircle.classList.add('in-progress');
+    var progressBar = document.getElementById('progressBar');
+    var progressBarInner = document.createElement('div');
+    progressBarInner.classList.add('progress-bar-inner');
+    progressBar.appendChild(progressBarInner);
 
-    setTimeout(function() {
-        progressCircle.classList.remove('in-progress');
-        progressCircle.classList.add('complete');
+    progressBar.classList.add('active');
 
-        setTimeout(function() {
-            submitButton.disabled = false;
-            progressCircle.classList.remove('complete');
-        }, 1000); // Длительность анимации зависит от CSS
-    }, 3000); // Продолжительность времени загрузки
+    // Имитация задержки выполнения
+    var progress = 0;
+    var interval = setInterval(function() {
+        progress += 10;
+        progressBarInner.style.width = progress + '%';
+        if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(function() {
+                submitButton.disabled = false;
+                progressBar.classList.remove('active');
+                progressBar.removeChild(progressBarInner);
+            }, 500); // Добавлено для завершения анимации
+        }
+    }, 300); // Промежуток времени для обновления прогресса
 });
