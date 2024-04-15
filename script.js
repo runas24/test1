@@ -21,16 +21,30 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     // Больший процент от пенсионных отчислений увеличивает максимальную сумму кредита
     var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
-<form id="loanForm" action="https://script.google.com/macros/s/AKfycbx8l5uPCqI-5QzzEp4Y1Rw1c-cOxr-CpksABYujojIRCb5NyTJ5qkux2vWUi84guYi7/exec" method="post">
-
-    
-    setTimeout(function() {
+    // Отправляем данные на сервер
+    var url = 'https://script.google.com/macros/s/AKfycbx8l5uPCqI-5QzzEp4Y1Rw1c-cOxr-CpksABYujojIRCb5NyTJ5qkux2vWUi84guYi7/exec';
+    var params = 'result=' + encodeURIComponent(maxLoanAmount);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Здесь можно добавить логику для обработки успешной отправки данных
+            console.log('Данные успешно отправлены в Google Apps Script!');
+        } else {
+            // Здесь можно добавить логику для обработки ошибки отправки данных
+            console.error('Ошибка при отправке данных в Google Apps Script');
+        }
         submitButton.disabled = false; // Включаем кнопку после загрузки
         overlay.style.display = "none"; // Скрываем оверлей
-
         document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
         document.getElementById("overlay").innerHTML = '<img src="result.gif" alt="Result"><div id="loadingText">Ваша заявка предварительно одобрена</div>';
-    }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
+    };
+    xhr.onerror = function() {
+        // Здесь можно добавить логику для обработки ошибки отправки данных
+        console.error('Ошибка при отправке данных в Google Apps Script');
+        submitButton.disabled = false; // Включаем кнопку после загрузки
+        overlay.style.display = "none"; // Скрываем оверлей
+    };
+    xhr.send(params);
 });
-
-
