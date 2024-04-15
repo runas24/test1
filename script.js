@@ -8,30 +8,42 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var overlay = document.getElementById("overlay");
-    var loader = document.getElementById("loader");
-    var overlayText = document.getElementById("overlayText");
-    var approvalMessage = document.getElementById("approvalMessage");
-
-    overlay.style.display = "flex";
-    overlayText.innerText = "Заявка на рассмотрении";
-
+    var progressBar = document.getElementById("progress-bar");
+    var overlayMessage = document.getElementById("overlay-message");
     var submitButton = document.querySelector('button[type="submit"]');
-    submitButton.disabled = true;
+    
+    overlay.style.display = "block"; // Показываем оверлей
+    
+    // Запускаем анимацию прогресс бара
+    var width = 1;
+    var progressInterval = setInterval(function() {
+        if (width >= 100) {
+            clearInterval(progressInterval);
+        } else {
+            width++;
+            progressBar.style.width = width + "%";
+        }
+    }, 100);
 
+    // Показываем сообщение о загрузке
+    overlayMessage.innerText = "Заявка на рассмотрении...";
+
+    // Симулируем рассчет с задержкой в 10 секунд
     setTimeout(function() {
-        submitButton.disabled = false;
+        clearInterval(progressInterval); // Останавливаем анимацию прогресс бара
+        overlay.style.display = "none"; // Скрываем оверлей
+        submitButton.disabled = false; // Включаем кнопку после загрузки
 
+        // Показываем результат и сообщение
         var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
         var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
         var pensionContributions = parseFloat(document.getElementById("pensionContributions").value.replace(/\D/g, ''));
 
+        // Рассчитываем максимальную сумму кредита
+        // Больший процент от пенсионных отчислений увеличивает максимальную сумму кредита
         var maxLoanAmount = desiredAmount - creditBurden + (pensionContributions * 6 * 2);
 
-        overlayText.innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
-
-        setTimeout(function() {
-            overlay.style.display = "none";
-            approvalMessage.style.display = "block";
-        }, 2000); // Показываем результат в оверлее на 2 секунды, затем показываем надпись о одобрении
-    }, 10000);
+        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+        overlayMessage.innerText = "Ваша заявка предварительно одобрена";
+    }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
