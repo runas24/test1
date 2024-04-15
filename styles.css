@@ -67,26 +67,20 @@ button[type="submit"]:hover {
 }
 
 /* Добавляем анимацию для класса "loading" */
-.loading {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    border-top: 4px solid #000;
+button[type="submit"].loading::after {
+    content: "";
     width: 20px;
     height: 20px;
+    border: 2px solid #fff;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: 4px;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 .loading-message {
     margin-top: 20px;
     font-style: italic;
-}
-
-.result-container {
-    margin-top: 20px; /* Добавляем отступ сверху */
-    font-size: 18px; /* Увеличиваем размер шрифта */
 }
