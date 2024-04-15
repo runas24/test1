@@ -15,23 +15,9 @@ header {
     margin-bottom: 20px;
 }
 
-.logo {
+header img {
     width: 150px;
     height: auto;
-    transition: transform 0.3s ease-in-out; /* Анимация при наведении */
-}
-
-.logo:hover {
-    transform: scale(1.1); /* Увеличиваем размер логотипа при наведении */
-}
-
-.header-title {
-    color: #ffcc00;
-    transition: color 0.3s ease-in-out; /* Анимация при наведении */
-}
-
-.header-title:hover {
-    color: #ffdb4d; /* Изменяем цвет заголовка при наведении */
 }
 
 .container {
@@ -41,27 +27,41 @@ header {
     background-color: #f2f2f2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease-in-out; /* Анимация при наведении */
 }
 
-.container:hover {
-    transform: scale(1.05); /* Немного увеличиваем контейнер при наведении */
+h2 {
+    color: #ffcc00;
+    animation: pulse 1.5s infinite alternate; /* Анимация для заголовка */
 }
 
-.input-field {
+@keyframes pulse {
+    from {
+        color: #ffcc00;
+    }
+    to {
+        color: #ff0000;
+    }
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"] {
     width: calc(100% - 22px);
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 10px;
-    transition: transform 0.3s ease-in-out; /* Анимация при фокусировке */
 }
 
-.input-field:focus {
-    transform: scale(1.05); /* Немного увеличиваем поле ввода при фокусировке */
-}
-
-.submit-button {
+button[type="submit"] {
     width: 100%;
     padding: 10px;
     background-color: #ffcc00;
@@ -69,9 +69,40 @@ header {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s; /* Анимация при наведении */
+    transition: background-color 0.3s;
 }
 
-.submit-button:hover {
-    background-color: #ffdb4d; /* Изменяем цвет кнопки при наведении */
+button[type="submit"]:hover {
+    background-color: #ffdb4d;
 }
+
+/* Добавляем анимацию для класса "loading" */
+button[type="submit"].loading::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    animation: spin 1s linear infinite;
+}
+
+.loading-message {
+    margin-top: 20px;
+    font-style: italic;
+    opacity: 0; /* Скрываем сообщение о загрузке */
+    animation: fadeIn 1s forwards; /* Плавное появление сообщения о загрузке */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
