@@ -66,8 +66,8 @@ button[type="submit"]:hover {
     background-color: #ffdb4d;
 }
 
-/* Добавленные стили для оверлея и сообщений */
-.overlay {
+/* CSS для прогресс бара и оверлеев */
+#overlay, #resultOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -77,33 +77,25 @@ button[type="submit"]:hover {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 999;
 }
 
-.loader {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #3498db;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 2s linear infinite;
-}
-
-.loading-message {
-    color: #fff;
-    font-size: 18px;
+#progressBarContainer {
     margin-top: 20px;
 }
 
-.result-message {
-    display: none;
-    color: #fff;
-    font-size: 18px;
-    margin-top: 20px;
+#progressBar {
+    width: 100%;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
 }
 
-/* Добавлена анимация вращения для прогресс-бара */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+#progressText {
+    margin-top: 10px;
+    color: #fff;
+}
+
+#resultText {
+    color: #fff;
+    font-size: 24px;
 }
