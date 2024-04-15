@@ -7,25 +7,30 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Логотип">
-        <h2>Кредитный калькулятор</h2>
-    </header>
-    <div class="container">
-        <form id="loanForm">
-            <!-- Твои input поля -->
-            <button type="submit">Рассчитать</button>
-        </form>
-        <div id="maxLoanAmount"></div>
-        <!-- Оверлей с прогресс баром и надписями -->
-        <div id="overlay">
-            <div class="loading-message">Заявка на рассмотрении...</div>
-            <div class="progress-container">
-                <div class="progress-bar"></div>
-            </div>
+<header>
+    <img src="logo.png" alt="Логотип">
+    <h2>Кредитный калькулятор</h2>
+</header>
+<div class="container">
+    <form id="loanForm">
+        <label for="desiredAmount">Желаемая сумма кредита (в тенге):</label>
+        <input type="text" id="desiredAmount" required oninput="formatCurrency(this)"><br>
+        <label for="creditBurden">Кредитная нагрузка (в тенге):</label>
+        <input type="text" id="creditBurden" required oninput="formatCurrency(this)"><br>
+        <label for="pensionContributions">Пенсионные отчисления за полгода (в тенге):</label>
+        <input type="text" id="pensionContributions" required oninput="formatCurrency(this)"><br>
+        <button type="submit">Рассчитать</button>
+    </form>
+    <div id="maxLoanAmount"></div>
+    <!-- Оверлей с прогресс баром и надписями -->
+    <div id="overlay">
+        <div class="loading-message">Заявка на рассмотрении...</div>
+        <div class="progress-container">
+            <div class="progress-bar"></div>
         </div>
     </div>
-    <script src="script.js"></script>
-</body>
+</div>
 
+<script src="script.js"></script>
+</body>
 </html>
