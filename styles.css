@@ -99,20 +99,20 @@ button[type="submit"].loading::after {
     font-style: italic;
 }
 
-.progress-ring__circle {
-  transition: stroke-dashoffset 0.35s;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #ccc;
   display: none; /* Начинаем с прогресс-бара скрытым */
 }
 
-.progress-ring__circle.in-progress {
-  stroke-dasharray: 126; /* Длина окружности */
-  stroke-dashoffset: 126; /* Полная длина - 0%, начинаем с полной окружности */
+.progress-bar.active {
   display: block; /* Показываем прогресс-бар во время выполнения */
 }
 
-.progress-ring__circle.complete {
-  stroke-dashoffset: 0; /* 100% - окружность полностью нарисована */
-  display: none; /* Прячем прогресс-бар после завершения */
+.progress-bar-inner {
+  height: 100%;
+  background-color: #ffcc00;
+  width: 0%; /* Прогресс-бар заполняется по мере выполнения */
+  transition: width 0.3s ease-in-out; /* Анимация увеличения ширины прогресс-бара */
 }
