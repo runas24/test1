@@ -8,13 +8,13 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var submitButton = document.querySelector('button[type="submit"]');
-    submitButton.disabled = true; // Отключаем кнопку во время загрузки
+    submitButton.classList.add("loading"); // Добавляем класс "loading" при отправке формы
 
     // Добавляем сообщение о загрузке
     var loadingMessage = document.createElement("div");
-    loadingMessage.innerHTML = '<div class="loader"></div><p class="loading-text">Ваша заявка на рассмотрении...</p>';
+    loadingMessage.innerText = "Ваша заявка на рассмотрении...";
     loadingMessage.classList.add("loading-message");
-    document.body.appendChild(loadingMessage); // Добавляем сообщение о загрузке к body
+    document.getElementById("maxLoanAmount").appendChild(loadingMessage);
 
     var desiredAmount = parseFloat(document.getElementById("desiredAmount").value.replace(/\D/g, ''));
     var creditBurden = parseFloat(document.getElementById("creditBurden").value.replace(/\D/g, ''));
@@ -28,10 +28,8 @@ document.getElementById("loanForm").addEventListener("submit", function(event) {
         // Удаляем сообщение о загрузке
         loadingMessage.remove();
 
-        submitButton.disabled = false; // Включаем кнопку после загрузки
+        submitButton.classList.remove("loading"); // Удаляем класс "loading" после загрузки
 
-        // Выводим результат в отдельном окне
-        var resultWindow = window.open("", "Результат", "width=400,height=200");
-        resultWindow.document.write("<h3 style='text-align:center;'>Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге</h3>");
-    }, 20000); // Результат появится через 20 секунд (20000 миллисекунд)
+        document.getElementById("maxLoanAmount").innerText = "Максимальная сумма кредита: " + maxLoanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " тенге";
+    }, 10000); // Результат появится через 10 секунд (10000 миллисекунд)
 });
